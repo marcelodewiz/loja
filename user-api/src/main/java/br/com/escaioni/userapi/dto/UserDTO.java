@@ -22,6 +22,7 @@ public class UserDTO {
     @NotBlank(message = "Email é obrigatorio")
     private String email;
     private String telefone;
+    private String key;
     private LocalDateTime dataCadastro;
 
     public static UserDTO convert(User user){
@@ -31,6 +32,7 @@ public class UserDTO {
         userDTO.setCpf(user.getCpf());
         userDTO.setEmail(user.getEmail());
         userDTO.setTelefone(user.getTelefone());
+        userDTO.setKey(user.getKey());
         userDTO.setDataCadastro(user.getDataCadastro());
 
         return userDTO;
