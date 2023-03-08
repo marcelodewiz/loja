@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     @GetMapping
     public List<ProductDTO> getProducts(){
@@ -33,6 +34,7 @@ public class ProductController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductDTO newProduct(@Valid @RequestBody ProductDTO productDTO){
         return productService.save(productDTO);
     }
@@ -42,11 +44,15 @@ public class ProductController {
         productService.delete(id);
     }
 
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public ProductDTO editProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
         return productService.editProduct(id, productDTO);
     }
 
+    @GetMapping("/{id}/id")
+    public ProductDTO findById(@PathVariable Long id){
+        return productService.getProductById(id);
+    }
     @GetMapping("/pageable")
     public Page<ProductDTO> getProductsPage(Pageable pageable){
         return productService.getAllPage(pageable);

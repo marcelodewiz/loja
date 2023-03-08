@@ -26,7 +26,7 @@ public class ProductDTO {
     private String productIdentifier;
 
     @NotNull(message = "Categoria nao deve ser nulo")
-    private CategoryDTO categoryDTO;
+    private CategoryDTO category;
 
     public static ProductDTO convert(Product product){
         ProductDTO productDTO = new ProductDTO();
@@ -35,7 +35,7 @@ public class ProductDTO {
         productDTO.setProductIdentifier(product.getProductIdentifier());
         productDTO.setDescricao(product.getDescricao());
         if(product.getCategory() != null){
-            productDTO.setCategoryDTO(CategoryDTO.convert(product.getCategory()));
+            productDTO.setCategory(CategoryDTO.convert(product.getCategory()));
         }
 
         return productDTO;

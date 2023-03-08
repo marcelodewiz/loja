@@ -4,17 +4,22 @@ import br.com.escaioni.productapi.dto.ProductDTO;
 import br.com.escaioni.productapi.model.Product;
 import br.com.escaioni.productapi.repository.CategoryRepository;
 import br.com.escaioni.productapi.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
+@RequiredArgsConstructor
 public class ProductService {
 
-    private ProductRepository productRepository;
-    private CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+
+    private final CategoryRepository categoryRepository;
 
     public List<ProductDTO> getAll(){
         List<Product> products = productRepository.findAll();
@@ -31,6 +36,11 @@ public class ProductService {
                 .stream()
                 .map(ProductDTO::convert)
                 .collect(Collectors.toList());
+    }
+
+    public ProductDTO getProductById(Long id){
+        Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException());
+        return ProductDTO.convert(product);
     }
 
     public ProductDTO findByProductIdentifier(String productIdentifier){
