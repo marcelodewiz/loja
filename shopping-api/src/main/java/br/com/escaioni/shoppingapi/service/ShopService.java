@@ -4,6 +4,8 @@ import br.com.escaioni.shoppingapi.converter.DTOConverter;
 import br.com.escaioni.shoppingapi.model.Shop;
 import br.com.escaioni.shoppingapi.repository.ReportRepositoryImpl;
 import br.com.escaioni.shoppingapi.repository.ShopRepository;
+import br.com.escaioni.shoppingclient.dto.ItemDTO;
+import br.com.escaioni.shoppingclient.dto.ProductDTO;
 import br.com.escaioni.shoppingclient.dto.ShopDTO;
 import br.com.escaioni.shoppingclient.dto.ShopReportDTO;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,8 @@ public class ShopService {
 
     private final ShopRepository shopRepository;
     private final ReportRepositoryImpl reportRepository;
+    private final ProductService productService;
+    private final UserService userService;
 
     public List<ShopDTO> getAll(){
         List<Shop> shops = shopRepository.findAll();
@@ -57,6 +61,13 @@ public class ShopService {
     }
 
     public ShopDTO save(ShopDTO shopDTO){
+        if(userService.getUserByCpf(shopDTO.getUserIdentifier()) == null){
+            return null;
+        }
+        if(!validateProducts(shopDTO.getItems())){
+            return null;
+        }
+
         shopDTO.setTotal(shopDTO.getItems()
                 .stream()
                 .map(x ->x.getPrice())
@@ -67,6 +78,18 @@ public class ShopService {
 
         shop = shopRepository.save(shop);
         return DTOConverter.convert(shop);
+    }
+
+    private boolean validateProducts(List<ItemDTO> items){
+        for(ItemDTO item : items){
+            ProductDTO productDTO = productService.getProductByIdentifier(
+                    item.getProductIdentifier());
+            if(productDTO == null){
+                return false;
+            }
+            item.setPrice(productDTO.getPreco());
+        }
+        return true;
     }
 
     public List<ShopDTO> getShopsByFilter(LocalDate dataInicio, LocalDate dataFim, Float valorMinimo){
