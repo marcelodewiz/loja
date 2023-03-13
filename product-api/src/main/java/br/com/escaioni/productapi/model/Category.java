@@ -1,6 +1,6 @@
 package br.com.escaioni.productapi.model;
 
-import br.com.escaioni.productapi.dto.CategoryDTO;
+import br.com.escaioni.shoppingclient.dto.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

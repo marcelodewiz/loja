@@ -1,6 +1,5 @@
-package br.com.escaioni.productapi.dto;
+package br.com.escaioni.shoppingclient.dto;
 
-import br.com.escaioni.productapi.model.Product;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,16 +27,5 @@ public class ProductDTO {
     @NotNull(message = "Categoria nao deve ser nulo")
     private CategoryDTO category;
 
-    public static ProductDTO convert(Product product){
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setNome(product.getNome());
-        productDTO.setPreco(product.getPreco());
-        productDTO.setProductIdentifier(product.getProductIdentifier());
-        productDTO.setDescricao(product.getDescricao());
-        if(product.getCategory() != null){
-            productDTO.setCategory(CategoryDTO.convert(product.getCategory()));
-        }
 
-        return productDTO;
-    }
 }

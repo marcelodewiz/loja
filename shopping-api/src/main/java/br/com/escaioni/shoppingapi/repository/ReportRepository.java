@@ -1,7 +1,7 @@
 package br.com.escaioni.shoppingapi.repository;
 
-import br.com.escaioni.shoppingapi.dto.ShopReportDTO;
 import br.com.escaioni.shoppingapi.model.Shop;
+import br.com.escaioni.shoppingclient.dto.ShopReportDTO;
 
 import java.time.LocalDate;
 import java.util.List;

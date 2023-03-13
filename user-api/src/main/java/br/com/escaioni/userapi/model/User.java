@@ -1,6 +1,6 @@
 package br.com.escaioni.userapi.model;
 
-import br.com.escaioni.userapi.dto.UserDTO;
+import br.com.escaioni.shoppingclient.dto.UserDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

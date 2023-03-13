@@ -1,7 +1,7 @@
 package br.com.escaioni.productapi.controller;
 
-import br.com.escaioni.productapi.dto.ProductDTO;
 import br.com.escaioni.productapi.service.ProductService;
+import br.com.escaioni.shoppingclient.dto.ProductDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

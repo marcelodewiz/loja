@@ -1,8 +1,8 @@
 package br.com.escaioni.shoppingapi.controller;
 
-import br.com.escaioni.shoppingapi.dto.ShopDTO;
-import br.com.escaioni.shoppingapi.dto.ShopReportDTO;
 import br.com.escaioni.shoppingapi.service.ShopService;
+import br.com.escaioni.shoppingclient.dto.ShopDTO;
+import br.com.escaioni.shoppingclient.dto.ShopReportDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -1,9 +1,10 @@
 package br.com.escaioni.productapi.service;
 
-import br.com.escaioni.productapi.dto.ProductDTO;
+import br.com.escaioni.productapi.converter.DTOConverter;
 import br.com.escaioni.productapi.model.Product;
 import br.com.escaioni.productapi.repository.CategoryRepository;
 import br.com.escaioni.productapi.repository.ProductRepository;
+import br.com.escaioni.shoppingclient.dto.ProductDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +26,7 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
         return products
                 .stream()
-                .map(ProductDTO::convert)
+                .map(DTOConverter::convert)
                 .collect(Collectors.toList());
     }
 
@@ -34,26 +35,26 @@ public class ProductService {
 
         return products
                 .stream()
-                .map(ProductDTO::convert)
+                .map(DTOConverter::convert)
                 .collect(Collectors.toList());
     }
 
     public ProductDTO getProductById(Long id){
         Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException());
-        return ProductDTO.convert(product);
+        return DTOConverter.convert(product);
     }
 
     public ProductDTO findByProductIdentifier(String productIdentifier){
         Product product = productRepository.findByProductIdentifier(productIdentifier);
         if(product != null){
-            return ProductDTO.convert(product);
+            return DTOConverter.convert(product);
         }
         return null;
     }
 
     public ProductDTO save(ProductDTO productDTO){
         Product product = productRepository.save(Product.convert(productDTO));
-        return ProductDTO.convert(product);
+        return DTOConverter.convert(product);
     }
 
     public void delete(long productId){
@@ -72,12 +73,12 @@ public class ProductService {
         if(dto.getPreco() != null){
             product.setPreco(dto.getPreco());
         }
-        return ProductDTO.convert(productRepository.save(product));
+        return DTOConverter.convert(productRepository.save(product));
     }
 
     public Page<ProductDTO> getAllPage(Pageable page){
         Page<Product> users = productRepository.findAll(page);
         return users
-                .map(ProductDTO::convert);
+                .map(DTOConverter::convert);
     }
 }

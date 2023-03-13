@@ -1,12 +1,11 @@
 package br.com.escaioni.shoppingapi.repository;
 
-import br.com.escaioni.shoppingapi.dto.ShopReportDTO;
 import br.com.escaioni.shoppingapi.model.Shop;
+import br.com.escaioni.shoppingclient.dto.ShopReportDTO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 

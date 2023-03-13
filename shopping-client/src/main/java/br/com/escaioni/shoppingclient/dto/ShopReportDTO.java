@@ -1,4 +1,4 @@
-package br.com.escaioni.shoppingapi.dto;
+package br.com.escaioni.shoppingclient.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

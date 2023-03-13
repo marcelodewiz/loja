@@ -1,6 +1,6 @@
 package br.com.escaioni.productapi.model;
 
-import br.com.escaioni.productapi.dto.ProductDTO;
+import br.com.escaioni.shoppingclient.dto.ProductDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

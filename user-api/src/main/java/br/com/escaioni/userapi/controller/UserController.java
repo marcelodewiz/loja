@@ -1,8 +1,7 @@
 package br.com.escaioni.userapi.controller;
 
-import br.com.escaioni.userapi.dto.UserDTO;
+import br.com.escaioni.shoppingclient.dto.UserDTO;
 import br.com.escaioni.userapi.service.UserService;
-import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -10,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
