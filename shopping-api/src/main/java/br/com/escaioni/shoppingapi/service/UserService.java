@@ -1,6 +1,7 @@
 package br.com.escaioni.shoppingapi.service;
 
 import br.com.escaioni.shoppingclient.dto.UserDTO;
+import br.com.escaioni.shoppingclient.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -23,7 +24,7 @@ public class UserService {
 
             return user.block();
         }catch(Exception exception){
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException();
         }
     }
 }

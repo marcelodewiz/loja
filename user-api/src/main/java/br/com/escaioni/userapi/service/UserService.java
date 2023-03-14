@@ -1,6 +1,7 @@
 package br.com.escaioni.userapi.service;
 
 import br.com.escaioni.shoppingclient.dto.UserDTO;
+import br.com.escaioni.shoppingclient.exception.UserNotFoundException;
 import br.com.escaioni.userapi.converter.DTOConverter;
 import br.com.escaioni.userapi.model.User;
 import br.com.escaioni.userapi.repository.UserRepository;
@@ -51,7 +52,7 @@ public class UserService {
         if(user != null){
             return DTOConverter.convert(user);
         }
-        return null;
+        throw new UserNotFoundException();
     }
 
     public List<UserDTO> queryByName(String name){
